@@ -47,7 +47,11 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(queryParser())
 app.use(timeout())
-app.use(cors())
+app.use(cors({
+  origin: '*', // Permite todas as origens. Para especificar origens, substitua '*' por um array de origens permitidas.
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+}));
 app.use(moesifMiddleware)
 app.use(rateLimiter)
 
